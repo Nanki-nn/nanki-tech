@@ -1,5 +1,5 @@
-I am an engineer focused on **AI applications, backend systems, and developer tools**. This site collects my writing, projects, and notes on turning ideas into usable software.
+I am a PhD student at the School of Science, University of Example, advised by [Prof. Advisor One](https://example.com) and [Dr. Advisor Two](https://example.com).
 
-I enjoy breaking complex systems into clear modules and building tools that save real time. My current interests include AI agent workflows, backend architecture, knowledge management, automation, and engineering productivity.
+Prior to this, I obtained a BSc degree with First Class Honours in Natural Science from the University of Example.
 
-You can find my projects, writing, and reusable engineering practices here.
+My current research focuses on investigating the mathematical principles of natural philosophy.
