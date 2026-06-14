@@ -1,5 +1,5 @@
-我目前是某某大学理学院博士生，导师是 [导师甲教授](https://example.com) 和 [导师乙博士](https://example.com)。
+I am an engineer focused on **AI applications, backend systems, and developer tools**. This site collects my writing, projects, and notes on turning ideas into usable software.
 
-此前，我在某某大学获得自然科学学士学位（一等荣誉）。
+I enjoy breaking complex systems into clear modules and building tools that save real time. My current interests include AI agent workflows, backend architecture, knowledge management, automation, and engineering productivity.
 
-我的研究主要关注自然哲学中的数学原理。
+You can find my projects, writing, and reusable engineering practices here.

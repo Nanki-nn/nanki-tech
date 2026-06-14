@@ -3,6 +3,7 @@
 import PublicationsList from '@/components/publications/PublicationsList';
 import TextPage from '@/components/pages/TextPage';
 import CardPage from '@/components/pages/CardPage';
+import BlogTimeline from '@/components/blog/BlogTimeline';
 import { Publication } from '@/types/publication';
 import {
   PublicationPageConfig,
@@ -39,7 +40,11 @@ export default function DynamicPageClient({ dataByLocale, defaultLocale }: Dynam
         <TextPage config={pageData.config} content={pageData.content} />
       )}
       {pageData.type === 'card' && (
-        <CardPage config={pageData.config} />
+        pageData.config.view === 'timeline' ? (
+          <BlogTimeline config={pageData.config} />
+        ) : (
+          <CardPage config={pageData.config} />
+        )
       )}
     </div>
   );

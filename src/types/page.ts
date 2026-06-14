@@ -21,10 +21,15 @@ export interface CardItem {
     content?: string;
     tags?: string[];
     link?: string;
+    slug?: string;
+    source?: string;
     image?: string;
 }
 
 export interface CardPageConfig extends BasePageConfig {
     type: 'card';
+    view?: 'cards' | 'timeline';
+    more_href?: string;
+    home_limit?: number;
     items: CardItem[];
 }

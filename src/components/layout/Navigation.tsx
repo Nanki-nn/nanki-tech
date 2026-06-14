@@ -114,6 +114,9 @@ export default function Navigation({
   }, [enableOnePageMode, effectiveItems]);
 
   const isDesktopItemActive = (item: SiteConfig['navigation'][number]) =>
+    item.type === 'link'
+      ? false
+      :
     enableOnePageMode
       ? activeHash === `#${item.target}` || (!activeHash && item.target === 'about')
       : (item.href === '/'
@@ -121,7 +124,7 @@ export default function Navigation({
         : pathname.startsWith(item.href));
 
   const getDesktopItemHref = (item: SiteConfig['navigation'][number]) =>
-    enableOnePageMode ? `/#${item.target}` : item.href;
+    item.type === 'link' ? item.href : (enableOnePageMode ? `/#${item.target}` : item.href);
 
   const activeItem = effectiveItems.find((item) => isDesktopItemActive(item)) ?? null;
   const activeHref = activeItem ? getDesktopItemHref(activeItem) : null;
@@ -225,8 +228,10 @@ export default function Navigation({
                             key={item.target}
                             href={href}
                             data-nav-href={href}
-                            prefetch={true}
-                            onClick={() => enableOnePageMode && setActiveHash(`#${item.target}`)}
+                            prefetch={item.type === 'link' ? false : true}
+                            target={item.type === 'link' ? '_blank' : undefined}
+                            rel={item.type === 'link' ? 'noopener noreferrer' : undefined}
+                            onClick={() => enableOnePageMode && item.type !== 'link' && setActiveHash(`#${item.target}`)}
                             onMouseEnter={() => setHoveredHref(href)}
                             className={cn(
                               'relative px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150',
@@ -281,12 +286,12 @@ export default function Navigation({
                   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     {effectiveItems.map((item, index) => {
                       const isActive = enableOnePageMode
-                        ? (item.href === '/' ? pathname === '/' && !activeHash : activeHash === `#${item.target}`)
+                        ? (item.type === 'link' ? false : (item.href === '/' ? pathname === '/' && !activeHash : activeHash === `#${item.target}`))
                         : (item.href === '/'
                           ? pathname === '/'
                           : pathname.startsWith(item.href));
 
-                      const href = enableOnePageMode
+                      const href = item.type === 'link' ? item.href : enableOnePageMode
                         ? (item.href === '/' ? '/' : `/#${item.target}`)
                         : item.href;
 
@@ -300,8 +305,10 @@ export default function Navigation({
                           <Disclosure.Button
                             as={Link}
                             href={href}
-                            prefetch={true}
-                            onClick={() => enableOnePageMode && setActiveHash(item.href === '/' ? '' : `#${item.target}`)}
+                            prefetch={item.type === 'link' ? false : true}
+                            target={item.type === 'link' ? '_blank' : undefined}
+                            rel={item.type === 'link' ? 'noopener noreferrer' : undefined}
+                            onClick={() => enableOnePageMode && item.type !== 'link' && setActiveHash(item.href === '/' ? '' : `#${item.target}`)}
                             className={cn(
                               'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
                               isActive
