@@ -1,0 +1,26 @@
+type = "card"
+title = "Blog"
+description = ""
+view = "timeline"
+more_href = "/blog"
+home_limit = 2
+
+[[items]]
+title = "如何设计一个可维护的 Agent 工作流"
+subtitle = "AI Engineering"
+date = "2026-06-14"
+content = "从任务边界、工具调用、上下文压缩和失败恢复四个角度，梳理一个 Agent 系统从 Demo 到可长期维护的关键取舍。"
+tags = ["AI Agent", "Architecture", "TypeScript"]
+slug = "maintainable-agent-workflow"
+source = "blog/maintainable-agent-workflow.md"
+link = "/blog/maintainable-agent-workflow"
+
+[[items]]
+title = "Next.js 个人站的内容系统怎么选"
+subtitle = "Frontend"
+date = "2026-06-14"
+content = "比较 TOML、Markdown、MDX 与 Headless CMS 的适用场景，并说明为什么个人站第一版更适合文件驱动。"
+tags = ["Next.js", "Content", "Tailwind"]
+slug = "nextjs-personal-site-content"
+source = "blog/nextjs-personal-site-content.md"
+link = "/blog/nextjs-personal-site-content"

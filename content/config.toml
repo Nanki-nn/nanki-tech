@@ -1,0 +1,52 @@
+[site]
+title = "nanki"
+description = "Personal blog and open-source projects."
+favicon = "/favicon.svg"
+last_updated = "2026-06-14"
+
+[author]
+name = "nanki"
+title = "AI Agent / Backend / System Architect"
+institution = "Focused on AI agents, backend engineering, and system architecture."
+avatar = "/bio.jpg"
+
+[social]
+location = "China / Remote"
+github = "https://github.com/Nanki-nn"
+yuque = "https://www.yuque.com/jiangnan-3o7ge"
+csdn = "https://blog.csdn.net/Nanki_?spm=1000.2115.3001.5343"
+
+[features]
+enable_likes = false
+enable_one_page_mode = true
+
+[i18n]
+enabled = true
+locales = ["zh", "en"]
+default_locale = "zh"
+mode = "fixed"
+fixed_locale = "zh"
+persist = true
+switcher = true
+
+[i18n.labels]
+zh = "CN"
+en = "EN"
+
+[[navigation]]
+title = "Home"
+type = "page"
+target = "about"
+href = "/"
+
+[[navigation]]
+title = "Blog"
+type = "page"
+target = "blog"
+href = "/blog"
+
+[[navigation]]
+title = "Projects"
+type = "page"
+target = "projects"
+href = "/projects"
