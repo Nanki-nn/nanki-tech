@@ -3,24 +3,34 @@ title = "Blog"
 description = ""
 view = "timeline"
 more_href = "/blog"
-home_limit = 2
+home_limit = 5
 
 [[items]]
-title = "如何设计一个可维护的 Agent 工作流"
-subtitle = "AI Engineering"
-date = "2026-06-14"
-content = "从任务边界、工具调用、上下文压缩和失败恢复四个角度，梳理一个 Agent 系统从 Demo 到可长期维护的关键取舍。"
-tags = ["AI Agent", "Architecture", "TypeScript"]
-slug = "maintainable-agent-workflow"
-source = "blog/maintainable-agent-workflow.md"
-link = "/blog/maintainable-agent-workflow"
+title = "03. 让 Agent 更聪明：System Prompt 的分层设计"
+subtitle = "Axon Tutorial"
+date = "2026-06-19"
+content = "拆解 System Prompt 的分层设计：反模式接种、风险评估、工具偏好和工作流约束如何让 Agent 更稳定。"
+tags = ["AI Agent"]
+slug = "axon-system-prompt"
+source = "blog/axon-system-prompt.md"
+link = "/blog/axon-system-prompt"
 
 [[items]]
-title = "Next.js 个人站的内容系统怎么选"
-subtitle = "Frontend"
-date = "2026-06-14"
-content = "比较 TOML、Markdown、MDX 与 Headless CMS 的适用场景，并说明为什么个人站第一版更适合文件驱动。"
-tags = ["Next.js", "Content", "Tailwind"]
-slug = "nextjs-personal-site-content"
-source = "blog/nextjs-personal-site-content.md"
-link = "/blog/nextjs-personal-site-content"
+title = "02. 让 Agent 有手有脚：工具系统的设计与演化"
+subtitle = "Axon Tutorial"
+date = "2026-06-19"
+content = "梳理 Agent 工具系统的注册、Schema、调度、安全性和输出治理，让智能体真正能执行任务。"
+tags = ["AI Agent"]
+slug = "axon-tool-system"
+source = "blog/axon-tool-system.md"
+link = "/blog/axon-tool-system"
+
+[[items]]
+title = "01. Agent 大脑：主循环是怎么转起来的"
+subtitle = "Axon Tutorial"
+date = "2026-06-19"
+content = "从零到一拆解 Agent Loop：思考、行动、观察与继续思考如何组成一个可运行的智能体主循环。"
+tags = ["AI Agent"]
+slug = "axon-agent-loop"
+source = "blog/axon-agent-loop.md"
+link = "/blog/axon-agent-loop"

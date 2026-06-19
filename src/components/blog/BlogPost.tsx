@@ -1,9 +1,15 @@
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
+import { Children, isValidElement } from 'react';
+import ReactMarkdown, { type Components } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { ArrowLeft } from 'lucide-react';
+import MermaidDiagram from '@/components/blog/MermaidDiagram';
 import type { CardItem } from '@/types/page';
 
-const markdownComponents = {
+const markdownComponents: Components = {
+  h1: ({ children }) => (
+    <h1 className="mt-12 mb-6 font-serif text-3xl font-bold leading-tight text-primary">{children}</h1>
+  ),
   h2: ({ children }: React.ComponentProps<'h2'>) => (
     <h2 className="mt-10 mb-4 text-2xl font-serif font-bold text-primary">{children}</h2>
   ),
@@ -23,16 +29,63 @@ const markdownComponents = {
   strong: ({ children }: React.ComponentProps<'strong'>) => (
     <strong className="font-semibold text-primary">{children}</strong>
   ),
-  code: ({ children }: React.ComponentProps<'code'>) => (
-    <code className="rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[0.92em] text-primary dark:bg-neutral-800">
-      {children}
-    </code>
-  ),
+  pre: ({ children }) => {
+    const child = Children.only(children);
+
+    if (isValidElement(child) && child.type === MermaidDiagram) {
+      return child;
+    }
+
+    return (
+      <pre className="mb-7 overflow-x-auto rounded-lg border border-neutral-200 bg-neutral-900 p-4 text-sm leading-7 text-neutral-100 shadow-sm dark:border-neutral-800">
+        {children}
+      </pre>
+    );
+  },
+  code: ({ children, className }) => {
+    const isBlock = Boolean(className);
+    const language = className?.replace('language-', '');
+
+    if (isBlock) {
+      if (language === 'mermaid') {
+        return <MermaidDiagram chart={String(children).trim()} />;
+      }
+
+      return (
+        <code className={`${className || ''} whitespace-pre font-mono text-[0.92rem]`}>
+          {children}
+        </code>
+      );
+    }
+
+    return (
+      <code className="rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[0.92em] text-primary dark:bg-neutral-800">
+        {children}
+      </code>
+    );
+  },
   blockquote: ({ children }: React.ComponentProps<'blockquote'>) => (
     <blockquote className="my-7 border-l-2 border-accent pl-5 font-serif text-lg italic text-neutral-700 dark:text-neutral-400">
       {children}
     </blockquote>
   ),
+  table: ({ children }) => (
+    <div className="my-7 overflow-x-auto">
+      <table className="w-full border-collapse text-left text-sm">
+        {children}
+      </table>
+    </div>
+  ),
+  thead: ({ children }) => <thead className="bg-neutral-100 text-primary dark:bg-neutral-800">{children}</thead>,
+  th: ({ children }) => (
+    <th className="border border-neutral-200 px-3 py-2 font-semibold dark:border-neutral-800">{children}</th>
+  ),
+  td: ({ children }) => (
+    <td className="border border-neutral-200 px-3 py-2 align-top text-neutral-700 dark:border-neutral-800 dark:text-neutral-400">
+      {children}
+    </td>
+  ),
+  hr: () => <hr className="my-10 border-neutral-200 dark:border-neutral-800" />,
 };
 
 interface BlogPostProps {
@@ -80,7 +133,9 @@ export default function BlogPost({ post, content }: BlogPostProps) {
         </header>
 
         <div className="text-base">
-          <ReactMarkdown components={markdownComponents}>{content}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+            {content}
+          </ReactMarkdown>
         </div>
       </article>
     </main>

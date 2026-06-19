@@ -70,7 +70,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.1 * index }}
-                        className={`group bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-lg`}
+                        className={`group bg-background ${embedded ? "p-4" : "p-6"} rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-lg`}
                     >
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                             <div className="min-w-0">
