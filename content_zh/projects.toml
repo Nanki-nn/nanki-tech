@@ -4,7 +4,7 @@ description = ""
 
 [[items]]
 title = "axon"
-subtitle = "AI Agent backend project"
+subtitle = "AI Agent"
 date = "2026-06-14"
 content = "A backend-oriented AI Agent project focused on tool orchestration, workflow execution, and system-level extensibility."
 tags = ["AI Agent", "Backend", "System"]
@@ -12,7 +12,7 @@ link = "https://github.com/Nanki-nn/axon"
 
 [[items]]
 title = "aisoftoj"
-subtitle = "AI-powered online judge project"
+subtitle = "智能软考刷题平台"
 date = "2026-06-14"
 content = "An AI-powered online judge project exploring intelligent coding assistance, evaluation workflows, and developer-facing learning tools."
 tags = ["AI", "OJ", "Backend"]
