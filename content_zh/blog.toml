@@ -3,7 +3,28 @@ title = "Blog"
 description = ""
 view = "timeline"
 more_href = "/blog"
-home_limit = 5
+home_limit = 2
+
+[[items]]
+title = "05. 别让 Agent 乱跑：权限系统与安全防线"
+subtitle = "Axon Tutorial"
+date = "2026-06-26"
+content = ""
+tags = ["AI Agent"]
+slug = "05-permission-system"
+source = "blog/05-permission-system.md"
+link = "/blog/05-permission-system"
+
+[[items]]
+title = "04. 别让 Agent 失忆：上下文管理的挑战与分层压缩"
+subtitle = "Axon Tutorial"
+date = "2026-06-26"
+content = ""
+tags = ["AI Agent"]
+slug = "04-context-management"
+source = "blog/04-context-management.md"
+link = "/blog/04-context-management"
+
 
 [[items]]
 title = "03. 让 Agent 更聪明：System Prompt 的分层设计"

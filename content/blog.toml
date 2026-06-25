@@ -3,7 +3,7 @@ title = "Blog"
 description = ""
 view = "timeline"
 more_href = "/blog"
-home_limit = 5
+home_limit = 2
 
 [[items]]
 title = "03. 让 Agent 更聪明：System Prompt 的分层设计"
