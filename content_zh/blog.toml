@@ -6,6 +6,16 @@ more_href = "/blog"
 home_limit = 2
 
 [[items]]
+title = "AI认知提升之道：从大模型训练到AI应用技术"
+subtitle = "AI Notes"
+date = "2026-07-10"
+content = "从预训练、微调、强化学习一路走到 RAG、MCP 和智能体工作流，梳理大模型能力如何形成，又如何接入真实应用。"
+tags = ["LLM", "AI"]
+slug = "llm-training-to-ai-applications"
+source = "blog/llm-training-to-ai-applications.md"
+link = "/blog/llm-training-to-ai-applications"
+
+[[items]]
 title = "05. 别让 Agent 乱跑：权限系统与安全防线"
 subtitle = "Axon Tutorial"
 date = "2026-06-26"
