@@ -64,6 +64,15 @@ const markdownComponents: Components = {
       </code>
     );
   },
+  img: ({ src = '', alt = '' }: React.ComponentProps<'img'>) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      className="my-8 block h-auto w-full rounded-xl border border-neutral-200 bg-white object-contain shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
+    />
+  ),
   blockquote: ({ children }: React.ComponentProps<'blockquote'>) => (
     <blockquote className="my-7 border-l-2 border-accent pl-5 font-serif text-lg italic text-neutral-700 dark:text-neutral-400">
       {children}

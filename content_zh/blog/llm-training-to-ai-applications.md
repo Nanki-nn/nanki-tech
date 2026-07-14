@@ -16,7 +16,7 @@
 
 第一步要做的事情是为 LLM 准备预训练需要的数据，而且我们想要的是整个互联网上的所有数据，这个数据的**体量**和**质量**总体影响了预训练的效果，如果通过自己去爬是一件成本极高的事情，目前有专门的人做这个事情，比如 [fineweb](https://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1) 这个数据集包含 **15-trillion tokens, 44TB disk space** 大小的数据，它的产生过程如下：
 
-![img.png](img.png)
+![img.png](/blog-assets/llm-training-to-ai-applications/img.png)
 
 1. URL过滤：屏蔽一些违规的网站
 1. 文本抽取：通过网站抓取的数据都是最原始的页面数据，即一个一个 html 的格式，这个过程是将标签数据转化成纯文本的数据
@@ -29,7 +29,7 @@
 通过 [Tiktokenizer](https://tiktokenizer.vercel.app/) 可以看到不同模型下，一段语料对应分词后的结果，比如 `hello world`，在 gpt2 模型分词算法下，被分词为 `hello` 和 ` world`，再从**token 词汇表**中找到这两个单词对应的符号标识为 `31373`、`995`。最终输入给 llm 的就是 `31373,995`。
 
 > 为什么不用直接使用字符编码，如 ASCII 编码 `hello world [104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100]` 来作为输入，而是将 token 作为 LLM 的最小语义单元。一方面是每个 token 都是有含义的语义，神经网络能更好通过这些语义的组合理解整个文本的含义，就像我们读书不会一个字母一个字母地看，而是以“词”为单位理解，LLM 也是如此。另一方面是使用 token 表示序列更短，减少序列长度能显著提升训练和推理效率。
-![img_1.png](img_1.png)
+![img_1.png](/blog-assets/llm-training-to-ai-applications/img_1.png)
 
 ### step3：神经网络训练
 
@@ -39,8 +39,8 @@
 
 这是 [fineweb](https://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1) 数据集的一部分。
 
-![img_2.png](img_2.png)
-![img_3.png](img_3.png)
+![img_2.png](/blog-assets/llm-training-to-ai-applications/img_2.png)
+![img_3.png](/blog-assets/llm-training-to-ai-applications/img_3.png)
 
 取前四个 token，输入神经网络，预测下一个 token。由于我们的词汇表中有 100277 个 token，在初始的时候输出就有 10 万多种可能性，且出现的概率是随机的，这里举了个例子（token 19438 的概率是 4%；token 11799 是 2%；而 token 3962，即 ` post` 的概率是 3%。）从数据集中看到，我们希望输出的是 3962，它的概率是 3%，我们希望这个概率在接下来的训练中变得更高，同时让其他错误的 token 的概率变得更低。
 
@@ -49,7 +49,7 @@
 
 那么 LLM 是如何记得预测下一个 token 的概率的呢，需要看看神经网络的内部。
 
-![img_4.png](img_4.png)
+![img_4.png](/blog-assets/llm-training-to-ai-applications/img_4.png)
 初始的参数是随机的，那么得到下一个 token 的概率自然也是随机的，但是通过神经网络的训练过程，**会去不断地调整更新这个参数（不断减小损失函数的损失值）**，使得神经网络的输出和训练集保持一致。
 
 用数学表达式来看核心目标是学会一个从输入到输出的映射函数：
@@ -86,7 +86,7 @@ pipe = pipeline("text-generation", model="openai-community/gpt2")
 output = pipe("The capital of France is")
 print(output)
 ```
-![img_6.png](img_6.png)
+![img_6.png](/blog-assets/llm-training-to-ai-applications/img_6.png)
 
 拓展：[复现GPT-2](https://github.com/karpathy/llm.c/discussions/677)
 
@@ -100,7 +100,7 @@ print(output)
 
 对话数据是一种有结构的数据（question:answer），我们要让大模型认识这种数据，就要做对这种数据做一些约定，比如一下一整个对话通过 `<|im_start|>`、`<|im_sep|>`、`<|im_end|>` 这些标签包起来，llm 就能找到对话的发出者，对话的开始和结束这些信息。
 
-![img_7.png](img_7.png)
+![img_7.png](/blog-assets/llm-training-to-ai-applications/img_7.png)
 
 通过以上微调就能获得一个问答功能比较强的 llm。
 
@@ -114,10 +114,10 @@ print(output)
 
 使用 6b 的 deepseek-r1 问出的效果，相关文档见《DeepSeek R1本地化部署 Ollama + Chatbox 打造最强AI工具》。
 
-![img_8.png](img_8.png)
+![img_8.png](/blog-assets/llm-training-to-ai-applications/img_8.png)
 现在最新的 gpt4 会说直接不知道是谁。
 
-![img_9.png](img_9.png)
+![img_9.png](/blog-assets/llm-training-to-ai-applications/img_9.png)
 通过在训练集中做一些处理，外部工具调用，网络检索等方法，现在的大模型幻觉没以前那么严重了，以后相信也会越来越强。
 
 - Knowledge of self
@@ -129,18 +129,18 @@ print(output)
 1. “系统消息”，在每次对话开始时提醒模型其身份。类似系统提示词
 1. 在对话数据中围绕这些主题进行硬编码的对话。在微调阶段加入类似的训练数据
 
-![img_10.png](img_10.png)
+![img_10.png](/blog-assets/llm-training-to-ai-applications/img_10.png)
 
 - Models need tokens to think
 
 一个需要逻辑推理的问题，先给出问题的结果，再解释过程。和先解释过程，再给出结果。前者容易给出错误的答案，后者更准确。因为本质上大模型的任务是预测下一个 token，因此给更长的 token，就像给人更长的思考时间一样，得到的答案更准确。
 
-![img_11.png](img_11.png)
+![img_11.png](/blog-assets/llm-training-to-ai-applications/img_11.png)
 - 模型在计数，拼写方面表现挣扎
 
 由于 llm 最基本的单位是 token，因此他们看不到字符，所以对于计算字符数的任务，就经常表现得不行。这也是在当前在 ai 翻译的时候，不能简单地通过 prompt 就能控制翻译好的语种长度限制的原因。解决方法，调用**解释器工具**。
 
-![img_12.png](img_12.png)
+![img_12.png](/blog-assets/llm-training-to-ai-applications/img_12.png)
 > 总结：FT 的结果是产生一个能更好完成特定任务的模型。
 
 ## 强化学习
@@ -149,23 +149,23 @@ print(output)
 
 可以使用我们个人读书学习的过程类比 llm 的不同训练阶段。我们学习某个知识的时候，首先阅读的是大量的知识点，或者说是背景知识，在这个过程中对这个知识的背景和上下文有了了解，在某种程度上类似于预训练的阶段。接下来，我们看的是一些例题，这些例题有问题和答案，相当于专家在展示如何完整地解决这个问题，我们之后可以去模仿这个解答过程，这个阶段相当于微调。而第三个阶段，我们进行解题，通过做题的过程提高我们对某个知识点的理解和准确率，这个过程就类似于强化学习。
 
-![img_13.png](img_13.png)
+![img_13.png](/blog-assets/llm-training-to-ai-applications/img_13.png)
 强化学习在**训练过程**和**推理过程**中都有应用。
 
 - 训练过程，例如**基于人类反馈的强化学习（RLHF）**
 
 对于数学题目这些有确定答案的问题，我们可以轻松地对模型结果打分。但是对于没有确定答案的问题，即“不可验证领域”，比如讲一个笑话，写一首诗，很难对不同的解法打分。这个时候想要使用 **RLHF**，大致的过程是首先有**人工评审员**对生成的结果进行排名和打分，告诉模型哪些更好哪些更坏，然后将以上数据用来构建一个**奖励模型**，预测哪些输出更好，利用奖励模型通过强化学习算法去不断地去迭代。这种方式是通过大量的**数据和反馈调整模型参数**，使其能够生成高质量的回答。
 
-![img_14.png](img_14.png)
+![img_14.png](/blog-assets/llm-training-to-ai-applications/img_14.png)
 - 推理过程
 
 在进行一个数学表达式计算的问题中，推理模型会尝试从不同的角度尝试，回溯等方法来提升准确率。这就类似于我们在解决数学问题的时候脑海中的思维过程。这种方式是利用已训练好的模型解决具体问题，即根据输入生成相应的输出。
 
 deepseek 是首次在论文中公开 RL 的“**推理模型**”，这也是其在数学和逻辑的问题上更准确的原因，但这也带来了更多的上下文 token。
 
-![img_15.png](img_15.png)
+![img_15.png](/blog-assets/llm-training-to-ai-applications/img_15.png)
 
-![img_16.png](img_16.png)
+![img_16.png](/blog-assets/llm-training-to-ai-applications/img_16.png)
 > LLM 训练一般都做三步，预训练获取一个 base model，相当于一个 token 预测生成器；微调需要喂入人工标注的数据做特定领域的训练，RL 相当于自我训练学习，本质上也是一种对自身的微调。这三个过程本质上是**调整 LLM 参数**的过程。
 
 ## AI应用技术
@@ -195,16 +195,16 @@ deepseek 是首次在论文中公开 RL 的“**推理模型**”，这也是其
 
 1. 相比为了注入新知识而微调模型，更新 RAG 的数据库成本更低，速度更快
 
-![img_17.png](img_17.png)
+![img_17.png](/blog-assets/llm-training-to-ai-applications/img_17.png)
 - MCP vs Function call
 
-![img_18.png](img_18.png)
+![img_18.png](/blog-assets/llm-training-to-ai-applications/img_18.png)
 
 MCP 更适合灵活、路径不确定的复杂场景，而 Function Call 更适合预定义、路径确定的简单场景。MCP 不是 Function Call 的替代品，而是它的“增强器”。它让 Function Call 能调用的“工具箱”变得无限可扩展，从而真正释放了 AI Agent 的潜力。
 
 - 智能体 vs Workflow
 
-![img_20.png](img_20.png)
+![img_20.png](/blog-assets/llm-training-to-ai-applications/img_20.png)
 - 多智能体，A2A（agent to agent）
 
 相关文档：《智能体框架agentscope》。
