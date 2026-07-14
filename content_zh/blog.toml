@@ -16,6 +16,56 @@ source = "blog/llm-training-to-ai-applications.md"
 link = "/blog/llm-training-to-ai-applications"
 
 [[items]]
+title = "09. 流式输出：让 Agent 边想边说"
+subtitle = "Axon Tutorial"
+date = "2026-06-30"
+content = "拆解 Agent 流式事件、工具调用拼接、重试与中断机制，让生成过程从等待黑盒变成可观察的运行时。"
+tags = ["Axon", "AI Agent", "Streaming"]
+slug = "axon-streaming"
+source = "blog/axon-streaming.md"
+link = "/blog/axon-streaming"
+
+[[items]]
+title = "07. 多 Agent 协作：从独奏到交响"
+subtitle = "Axon Tutorial"
+date = "2026-06-27"
+content = "从通信协议、任务分发到子 Agent 生命周期，梳理多个智能体如何各司其职并协同完成复杂任务。"
+tags = ["Axon", "AI Agent", "Multi-Agent"]
+slug = "axon-multi-agent-collaboration"
+source = "blog/axon-multi-agent-collaboration.md"
+link = "/blog/axon-multi-agent-collaboration"
+
+[[items]]
+title = "06. 记忆系统：让 Agent 记住你"
+subtitle = "Axon Tutorial"
+date = "2026-06-27"
+content = "从记忆类型、存储格式到检索与注入，构建不会在上下文压缩后遗忘用户和项目事实的 Agent。"
+tags = ["Axon", "AI Agent", "Memory"]
+slug = "axon-memory-system"
+source = "blog/axon-memory-system.md"
+link = "/blog/axon-memory-system"
+
+[[items]]
+title = "05. Skill 系统：注入专业能力"
+subtitle = "Axon Tutorial"
+date = "2026-06-27"
+content = "通过结构化技能文档、条件匹配和按需加载，为 Agent 注入可复用的领域知识与实操流程。"
+tags = ["Axon", "AI Agent", "Skill"]
+slug = "axon-skill-system"
+source = "blog/axon-skill-system.md"
+link = "/blog/axon-skill-system"
+
+[[items]]
+title = "04. 任务规划：拆解复杂目标"
+subtitle = "Axon Tutorial"
+date = "2026-06-27"
+content = "用 DAG 任务模型、依赖解析和状态管理拆解复杂目标，让 Agent 清楚自己做到哪一步、下一步该做什么。"
+tags = ["Axon", "AI Agent", "Planning"]
+slug = "axon-task-planning"
+source = "blog/axon-task-planning.md"
+link = "/blog/axon-task-planning"
+
+[[items]]
 title = "05. 别让 Agent 乱跑：权限系统与安全防线"
 subtitle = "Axon Tutorial"
 date = "2026-06-26"
@@ -65,3 +115,13 @@ tags = ["AI Agent"]
 slug = "axon-agent-loop"
 source = "blog/axon-agent-loop.md"
 link = "/blog/axon-agent-loop"
+
+[[items]]
+title = "00. 系列概览：从零搭一个 AI Agent 框架"
+subtitle = "Axon Tutorial"
+date = "2026-06-19"
+content = "概览 Axon 教程系列的核心模块与学习路线，从 Agent Loop 逐步走向工具、记忆、协作和流式运行时。"
+tags = ["Axon", "AI Agent", "Overview"]
+slug = "axon-overview"
+source = "blog/axon-overview.md"
+link = "/blog/axon-overview"
