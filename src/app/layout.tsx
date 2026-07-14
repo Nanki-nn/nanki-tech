@@ -92,23 +92,19 @@ function buildLocalizedConfigMaps(
   locales: string[]
 ): {
   navigationByLocale: Record<string, SiteConfig['navigation']>;
-  siteTitleByLocale: Record<string, string>;
   lastUpdatedByLocale: Record<string, string | undefined>;
 } {
   const navigationByLocale: Record<string, SiteConfig['navigation']> = {};
-  const siteTitleByLocale: Record<string, string> = {};
   const lastUpdatedByLocale: Record<string, string | undefined> = {};
 
   for (const locale of locales) {
     const localizedConfig = getConfig(locale);
     navigationByLocale[locale] = localizedConfig.navigation;
-    siteTitleByLocale[locale] = localizedConfig.site.title;
     lastUpdatedByLocale[locale] = localizedConfig.site.last_updated;
   }
 
   return {
     navigationByLocale,
-    siteTitleByLocale,
     lastUpdatedByLocale,
   };
 }
@@ -124,7 +120,6 @@ export default function RootLayout({
 
   const {
     navigationByLocale,
-    siteTitleByLocale,
     lastUpdatedByLocale,
   } = buildLocalizedConfigMaps(targetLocales);
 
@@ -159,11 +154,9 @@ export default function RootLayout({
           <LocaleProvider config={runtimeI18n}>
             <Navigation
               items={config.navigation}
-              siteTitle={config.site.title}
               enableOnePageMode={config.features.enable_one_page_mode}
               i18n={runtimeI18n}
               itemsByLocale={navigationByLocale}
-              siteTitleByLocale={siteTitleByLocale}
             />
             <main className="min-h-screen pt-16 lg:pt-20">
               {children}
