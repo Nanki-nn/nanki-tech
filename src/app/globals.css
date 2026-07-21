@@ -176,6 +176,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Typography utilities */
 .text-balance {
   text-wrap: balance;

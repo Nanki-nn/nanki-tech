@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# local design explorations
+/.superpowers/
+
 # next.js
 /.next/
 /out/
