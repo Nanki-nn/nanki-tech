@@ -10,12 +10,13 @@ import {
   TextPageConfig,
   CardPageConfig,
 } from '@/types/page';
+import type { ResolvedBlogCollection } from '@/types/blog';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 
 export type DynamicPageLocaleData =
   | { type: 'publication'; config: PublicationPageConfig; publications: Publication[] }
   | { type: 'text'; config: TextPageConfig; content: string }
-  | { type: 'card'; config: CardPageConfig };
+  | { type: 'card'; config: CardPageConfig; collections?: ResolvedBlogCollection[] };
 
 interface DynamicPageClientProps {
   dataByLocale: Record<string, DynamicPageLocaleData>;
@@ -41,7 +42,11 @@ export default function DynamicPageClient({ dataByLocale, defaultLocale }: Dynam
       )}
       {pageData.type === 'card' && (
         pageData.config.view === 'timeline' ? (
-          <BlogTimeline config={pageData.config} />
+          <BlogTimeline
+            config={pageData.config}
+            collections={pageData.collections}
+            locale={locale}
+          />
         ) : (
           <CardPage config={pageData.config} />
         )

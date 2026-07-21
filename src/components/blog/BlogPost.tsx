@@ -147,7 +147,7 @@ export default function BlogPost({ post, content }: BlogPostProps) {
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8 xl:grid xl:max-w-[82rem] xl:grid-cols-[minmax(0,48rem)_13rem] xl:justify-center xl:gap-16 2xl:gap-20">
         <article className="min-w-0">
           <Link
-            href="/#blog"
+            href="/blog"
             className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-neutral-600 transition-colors hover:text-accent dark:text-neutral-500"
           >
             <ArrowLeft className="h-4 w-4" />

@@ -12,6 +12,7 @@ import {
 
 import { Metadata } from 'next';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
+import { getFeaturedBlogCollections } from '@/lib/blogCollections';
 
 function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleData | null {
   const pageConfig = getPageConfig(slug, locale) as BasePageConfig | null;
@@ -44,6 +45,7 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
     return {
       type: 'card',
       config: pageConfig as CardPageConfig,
+      collections: slug === 'blog' ? getFeaturedBlogCollections(locale) : undefined,
     };
   }
 

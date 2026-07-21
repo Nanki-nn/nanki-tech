@@ -1,0 +1,25 @@
+[[collections]]
+slug = "axon-tutorial"
+title = "Axon: From Agent Loop to Reliable Agents"
+kind = "series"
+description = "A step-by-step series on building an AI agent runtime, from its core loop and tools to prompts and system design."
+featured = true
+order = 1
+posts = [
+  "axon-agent-loop",
+  "axon-tool-system",
+  "axon-system-prompt"
+]
+
+[[collections]]
+slug = "agent-engineering"
+title = "AI Agent Engineering"
+kind = "topic"
+description = "A curated reading list about the practical building blocks behind useful and maintainable AI agents."
+featured = true
+order = 2
+posts = [
+  "axon-agent-loop",
+  "axon-tool-system",
+  "axon-system-prompt"
+]

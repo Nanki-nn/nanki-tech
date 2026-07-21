@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import CollectionShelf from '@/components/blog/CollectionShelf';
+import type { ResolvedBlogCollection } from '@/types/blog';
 import type { CardItem, CardPageConfig } from '@/types/page';
 
 function getYear(item: CardItem): string {
@@ -20,7 +22,15 @@ function groupPosts(items: CardItem[]): Array<[string, CardItem[]]> {
   return Array.from(groups.entries()).sort(([a], [b]) => b.localeCompare(a));
 }
 
-export default function BlogTimeline({ config }: { config: CardPageConfig }) {
+export default function BlogTimeline({
+  config,
+  collections = [],
+  locale,
+}: {
+  config: CardPageConfig;
+  collections?: ResolvedBlogCollection[];
+  locale: string;
+}) {
   const groups = groupPosts(config.items);
 
   return (
@@ -37,6 +47,8 @@ export default function BlogTimeline({ config }: { config: CardPageConfig }) {
           </p>
         )}
       </header>
+
+      <CollectionShelf collections={collections} locale={locale} />
 
       <div className="space-y-10">
         {groups.map(([year, posts]) => (

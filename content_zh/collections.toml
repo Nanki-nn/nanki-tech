@@ -1,0 +1,36 @@
+[[collections]]
+slug = "axon-tutorial"
+title = "Axon：从 Agent Loop 到多智能体"
+kind = "series"
+description = "从零构建一个可运行、可维护的 AI Agent 框架，逐步理解主循环、工具、上下文、权限、记忆、协作与流式运行时。"
+featured = true
+order = 1
+posts = [
+  "axon-overview",
+  "axon-agent-loop",
+  "axon-tool-system",
+  "axon-system-prompt",
+  "04-context-management",
+  "05-permission-system",
+  "axon-task-planning",
+  "axon-skill-system",
+  "axon-memory-system",
+  "axon-multi-agent-collaboration",
+  "axon-streaming"
+]
+
+[[collections]]
+slug = "agent-engineering"
+title = "AI Agent 工程实践"
+kind = "topic"
+description = "围绕智能体工程中的主循环、工具、上下文、权限、记忆与多 Agent 协作整理的一组实践文章。"
+featured = true
+order = 2
+posts = [
+  "axon-agent-loop",
+  "axon-tool-system",
+  "04-context-management",
+  "05-permission-system",
+  "axon-memory-system",
+  "axon-multi-agent-collaboration"
+]
