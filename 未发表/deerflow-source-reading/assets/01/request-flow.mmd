@@ -1,0 +1,41 @@
+flowchart TB
+    subgraph B[Browser / Frontend]
+        input[用户输入]
+        send[sendMessage]
+        submit[thread.submit<br/>assistantId = lead_agent]
+        input --> send --> submit
+    end
+
+    subgraph N[Nginx :2026]
+        rewrite[rewrite<br/>/api/langgraph/* to /api/*]
+    end
+
+    subgraph G[Gateway :8001]
+        route[stream_run]
+        start[start_run]
+        resolve[resolve_agent_factory]
+        task[asyncio.create_task<br/>run_agent]
+        route --> start --> resolve --> task
+    end
+
+    subgraph H[DeerFlow Harness / LangGraph]
+        worker[run_agent]
+        factory[agent_factory<br/>dynamic callable]
+        lead[make_lead_agent]
+        astream[agent.astream]
+        worker --> factory --> lead --> astream
+    end
+
+    submit -->|LangGraph SDK HTTP POST<br/>/api/langgraph/threads/THREAD_ID/runs/stream| rewrite
+    rewrite -->|rewritten request<br/>/api/threads/THREAD_ID/runs/stream| route
+    task -->|RunRecord, config, graph_input,<br/>agent_factory| worker
+
+    classDef browser fill:#E8F1FF,stroke:#2563EB,color:#111827;
+    classDef proxy fill:#FEF3C7,stroke:#D97706,color:#111827;
+    classDef gateway fill:#E7F8EF,stroke:#15803D,color:#111827;
+    classDef harness fill:#FCE7F3,stroke:#BE185D,color:#111827;
+
+    class input,send,submit browser;
+    class rewrite proxy;
+    class route,start,resolve,task gateway;
+    class worker,factory,lead,astream harness;
