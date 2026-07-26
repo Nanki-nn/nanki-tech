@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import BlogListItemContent from '@/components/blog/BlogListItemContent';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 import type { CardItem } from '@/types/page';
 import type { ResolvedBlogCollection } from '@/types/blog';
@@ -12,38 +13,7 @@ interface CollectionPageClientProps {
   defaultLocale: string;
 }
 
-function PostDetails({ post }: { post: CardItem }) {
-  return (
-    <>
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-neutral-400">
-        {post.subtitle && <span>{post.subtitle}</span>}
-        {post.date && <span>{post.date}</span>}
-      </div>
-      <h2 className="mt-2 font-serif text-2xl font-bold leading-snug text-primary transition-colors group-hover:text-accent">
-        {post.title}
-      </h2>
-      {post.content && (
-        <p className="mt-3 max-w-2xl text-sm leading-7 text-neutral-600 dark:text-neutral-500">
-          {post.content}
-        </p>
-      )}
-      {post.tags && post.tags.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {post.tags.map((tag) => (
-            <span
-              key={tag}
-              className="border border-neutral-200 bg-neutral-50 px-2 py-1 text-[0.6875rem] text-neutral-500 dark:border-neutral-800 dark:bg-neutral-800/50"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
-    </>
-  );
-}
-
-function SeriesPosts({ posts, readLabel }: { posts: CardItem[]; readLabel: string }) {
+function SeriesPosts({ posts }: { posts: CardItem[] }) {
   return (
     <ol>
       {posts.map((post, index) => (
@@ -55,14 +25,10 @@ function SeriesPosts({ posts, readLabel }: { posts: CardItem[]; readLabel: strin
             <span className="absolute -left-1.5 top-2 h-3 w-3 rounded-full border-2 border-background bg-accent" />
             {post.link ? (
               <Link href={post.link} className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50">
-                <PostDetails post={post} />
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors group-hover:text-accent">
-                  {readLabel}
-                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                </span>
+                <BlogListItemContent post={post} />
               </Link>
             ) : (
-              <PostDetails post={post} />
+              <BlogListItemContent post={post} />
             )}
           </div>
         </li>
@@ -71,7 +37,7 @@ function SeriesPosts({ posts, readLabel }: { posts: CardItem[]; readLabel: strin
   );
 }
 
-function TopicPosts({ posts, readLabel }: { posts: CardItem[]; readLabel: string }) {
+function TopicPosts({ posts }: { posts: CardItem[] }) {
   return (
     <div className="border-y border-neutral-200 dark:border-neutral-800">
       {posts.map((post) => (
@@ -84,14 +50,10 @@ function TopicPosts({ posts, readLabel }: { posts: CardItem[]; readLabel: string
           </div>
           {post.link ? (
             <Link href={post.link} className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50">
-              <PostDetails post={post} />
-              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors group-hover:text-accent">
-                {readLabel}
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-              </span>
+              <BlogListItemContent post={post} />
             </Link>
           ) : (
-            <div><PostDetails post={post} /></div>
+            <div><BlogListItemContent post={post} /></div>
           )}
         </article>
       ))}
@@ -111,7 +73,6 @@ export default function CollectionPageClient({
 
   const isChinese = locale.startsWith('zh');
   const isSeries = collection.kind === 'series';
-  const readLabel = isChinese ? '阅读文章' : 'Read article';
 
   return (
     <motion.div
@@ -154,9 +115,9 @@ export default function CollectionPageClient({
 
       {collection.posts.length > 0 ? (
         isSeries ? (
-          <SeriesPosts posts={collection.posts} readLabel={readLabel} />
+          <SeriesPosts posts={collection.posts} />
         ) : (
-          <TopicPosts posts={collection.posts} readLabel={readLabel} />
+          <TopicPosts posts={collection.posts} />
         )
       ) : (
         <div className="border-y border-neutral-200 py-12 text-center dark:border-neutral-800">
