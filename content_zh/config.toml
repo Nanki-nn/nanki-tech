@@ -31,3 +31,10 @@ title = "Blog"
 type = "page"
 target = "blog"
 href = "/blog"
+
+[[navigation]]
+title = "Projects"
+type = "page"
+target = "projects"
+href = "/projects"
+show_in_nav = false

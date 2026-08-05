@@ -36,6 +36,7 @@ export interface SiteConfig {
     type: 'section' | 'page' | 'link';
     target: string;
     href: string;
+    show_in_nav?: boolean;
   }>;
   sections?: Array<{
     id: string;

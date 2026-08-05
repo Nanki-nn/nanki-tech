@@ -41,7 +41,8 @@ export default function Navigation({
   const resolvedLocale = i18n.enabled ? locale : i18n.defaultLocale;
 
   const effectiveItems = useMemo(() => {
-    return itemsByLocale?.[resolvedLocale] || itemsByLocale?.[i18n.defaultLocale] || items;
+    const localizedItems = itemsByLocale?.[resolvedLocale] || itemsByLocale?.[i18n.defaultLocale] || items;
+    return localizedItems.filter((item) => item.show_in_nav !== false);
   }, [i18n.defaultLocale, items, itemsByLocale, resolvedLocale]);
 
   const visibleSections = useRef(new Set<string>());
