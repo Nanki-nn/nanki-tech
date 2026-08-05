@@ -8,7 +8,7 @@ export default function BlogListItemContent({
   post: CardItem;
   linkTitle?: boolean;
 }) {
-  const hasMeta = Boolean(post.subtitle || post.date);
+  const hasMeta = Boolean(post.date);
   const title = linkTitle && post.link ? (
     <Link
       href={post.link}
@@ -24,7 +24,6 @@ export default function BlogListItemContent({
     <>
       {hasMeta && (
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-neutral-400">
-          {post.subtitle && <span>{post.subtitle}</span>}
           {post.date && <span>{post.date}</span>}
         </div>
       )}

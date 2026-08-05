@@ -39,13 +39,7 @@ export default function CollectionShelf({
                   : 'border-primary/70 hover:border-accent'
               }`}
             >
-              <div className="mb-4 flex items-center justify-between gap-4 text-[0.6875rem] uppercase tracking-[0.14em] text-neutral-400">
-                <span>
-                  {isSeries
-                    ? (isChinese ? '有序系列' : 'Series')
-                    : (isChinese ? '主题专题' : 'Topic')}
-                  {' · '}{collection.posts.length} {isChinese ? '篇' : 'articles'}
-                </span>
+              <div className="mb-4 flex justify-end">
                 <span className="font-serif text-sm tracking-normal text-neutral-300">
                   {String(index + 1).padStart(2, '0')}
                 </span>
