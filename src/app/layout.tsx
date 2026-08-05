@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Navigation from '@/components/layout/Navigation';
-import Footer from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { LocaleProvider } from '@/components/ui/LocaleProvider';
 import { getConfig } from '@/lib/config';
@@ -92,21 +91,15 @@ function buildLocalizedConfigMaps(
   locales: string[]
 ): {
   navigationByLocale: Record<string, SiteConfig['navigation']>;
-  lastUpdatedByLocale: Record<string, string | undefined>;
 } {
   const navigationByLocale: Record<string, SiteConfig['navigation']> = {};
-  const lastUpdatedByLocale: Record<string, string | undefined> = {};
 
   for (const locale of locales) {
     const localizedConfig = getConfig(locale);
     navigationByLocale[locale] = localizedConfig.navigation;
-    lastUpdatedByLocale[locale] = localizedConfig.site.last_updated;
   }
 
-  return {
-    navigationByLocale,
-    lastUpdatedByLocale,
-  };
+  return { navigationByLocale };
 }
 
 export default function RootLayout({
@@ -118,10 +111,7 @@ export default function RootLayout({
   const runtimeI18n = getRuntimeI18nConfig(config.i18n);
   const targetLocales = runtimeI18n.enabled ? runtimeI18n.locales : [runtimeI18n.defaultLocale];
 
-  const {
-    navigationByLocale,
-    lastUpdatedByLocale,
-  } = buildLocalizedConfigMaps(targetLocales);
+  const { navigationByLocale } = buildLocalizedConfigMaps(targetLocales);
 
   return (
     <html lang={runtimeI18n.defaultLocale} className="scroll-smooth" suppressHydrationWarning>
@@ -161,11 +151,6 @@ export default function RootLayout({
             <main className="min-h-screen pt-16 lg:pt-20">
               {children}
             </main>
-            <Footer
-              lastUpdated={config.site.last_updated}
-              lastUpdatedByLocale={lastUpdatedByLocale}
-              defaultLocale={runtimeI18n.defaultLocale}
-            />
           </LocaleProvider>
         </ThemeProvider>
       </body>
