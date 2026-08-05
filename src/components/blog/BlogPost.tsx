@@ -1,8 +1,6 @@
-import Link from 'next/link';
 import { Children, isValidElement } from 'react';
 import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { ArrowLeft } from 'lucide-react';
 import MermaidDiagram from '@/components/blog/MermaidDiagram';
 import TableOfContents from '@/components/blog/TableOfContents';
 import { extractMarkdownHeadings, type MarkdownHeading } from '@/lib/markdownHeadings';
@@ -154,14 +152,6 @@ export default function BlogPost({ post, content }: BlogPostProps) {
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8 xl:grid xl:max-w-[82rem] xl:grid-cols-[minmax(0,48rem)_13rem] xl:justify-center xl:gap-16 2xl:gap-20">
         <article className="min-w-0">
-          <Link
-            href="/blog"
-            className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-neutral-600 transition-colors hover:text-accent dark:text-neutral-500"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Blog
-          </Link>
-
           <header
             className={`${headings.length > 0 ? 'mb-6 xl:mb-10' : 'mb-10'} border-b border-neutral-200 pb-8 dark:border-neutral-800`}
           >
