@@ -44,7 +44,7 @@ function createMarkdownComponents(headings: MarkdownHeading[]): Components {
       );
     },
     p: ({ children }: React.ComponentProps<'p'>) => (
-      <p className="mb-5 leading-8 text-neutral-700 dark:text-neutral-400">{children}</p>
+      <p className="mb-3 leading-7 text-neutral-700 dark:text-neutral-400">{children}</p>
     ),
     ul: ({ children }: React.ComponentProps<'ul'>) => (
       <ul className="mb-6 list-disc space-y-2 pl-6 text-neutral-700 dark:text-neutral-400">
@@ -113,7 +113,7 @@ function createMarkdownComponents(headings: MarkdownHeading[]): Components {
       />
     ),
     blockquote: ({ children }: React.ComponentProps<'blockquote'>) => (
-      <blockquote className="my-7 border-l-2 border-accent pl-5 font-serif text-lg italic text-neutral-700 dark:text-neutral-400">
+      <blockquote className="my-4 border-l-2 border-accent pl-5 font-serif text-lg italic leading-7 text-neutral-700 [&>p]:mb-0 dark:text-neutral-400">
         {children}
       </blockquote>
     ),
