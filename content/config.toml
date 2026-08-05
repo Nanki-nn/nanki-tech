@@ -26,8 +26,8 @@ locales = ["zh", "en"]
 default_locale = "zh"
 mode = "fixed"
 fixed_locale = "zh"
-persist = true
-switcher = true
+persist = false
+switcher = false
 
 [i18n.labels]
 zh = "CN"
