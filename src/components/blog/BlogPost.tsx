@@ -61,7 +61,7 @@ function createMarkdownComponents(headings: MarkdownHeading[]): Components {
     a: ({ children, href }: React.ComponentProps<'a'>) => (
       <a
         href={href}
-        className="font-medium text-accent underline decoration-2 underline-offset-4 transition-colors hover:text-primary [&_code]:text-inherit [&_strong]:text-inherit"
+        className="font-medium text-accent no-underline transition-colors hover:text-primary [&_code]:text-inherit [&_strong]:text-inherit"
       >
         {children}
       </a>
