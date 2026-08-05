@@ -28,7 +28,6 @@ export default function Navigation({
 }: NavigationProps) {
   const pathname = usePathname();
   const locale = useLocaleStore((state) => state.locale);
-  const [scrolled, setScrolled] = useState(false);
   const [activeHash, setActiveHash] = useState('');
   const [hoveredHref, setHoveredHref] = useState<string | null>(null);
   const messages = useMessages();
@@ -44,16 +43,6 @@ export default function Navigation({
   const effectiveItems = useMemo(() => {
     return itemsByLocale?.[resolvedLocale] || itemsByLocale?.[i18n.defaultLocale] || items;
   }, [i18n.defaultLocale, items, itemsByLocale, resolvedLocale]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const visibleSections = useRef(new Set<string>());
 
@@ -160,12 +149,7 @@ export default function Navigation({
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6 }}
-            className={cn(
-              'transition-all duration-300 ease-out',
-              scrolled
-                ? 'bg-background/80 backdrop-blur-xl border-b border-neutral-200/50 shadow-lg'
-                : 'bg-transparent'
-            )}
+            className="bg-transparent"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-end items-center h-16 lg:h-20">
