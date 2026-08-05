@@ -163,7 +163,7 @@ npm run build
 远程仓库：
 
 ```text
-https://github.com/Nanki-nn/personal-site
+https://github.com/Nanki-nn/nanki-tech
 ```
 
 当前仓库暂时没有 `.github/workflows/deploy.yml`。之前从本地推送时，当前 GitHub 授权没有 `workflow` 权限，所以先移除了 workflow 文件。以后如果要自动部署，可以在 GitHub 页面上添加，或使用带 `workflow` 权限的 token 推送。

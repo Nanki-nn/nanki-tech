@@ -22,9 +22,6 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: config.author.name }],
     creator: config.author.name,
     publisher: config.author.name,
-    icons: {
-      icon: config.site.favicon,
-    },
     openGraph: {
       type: 'website',
       locale: openGraphLocale,
@@ -116,7 +113,6 @@ export default function RootLayout({
   return (
     <html lang={runtimeI18n.defaultLocale} className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" href={config.site.favicon} type="image/svg+xml" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

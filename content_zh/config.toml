@@ -1,11 +1,10 @@
 [site]
-title = "江楠"
+title = "nanki"
 description = "Personal blog and open-source projects."
-favicon = "/favicon.svg"
 last_updated = "2026-06-14"
 
 [author]
-name = "江楠"
+name = "nanki"
 title = "AI Agent / Backend / System Architect"
 institution = "Focused on AI agents, backend engineering, and system architecture."
 avatar = "/bio.jpg"

@@ -5,7 +5,7 @@ import {
     EnvelopeIcon,
     MapPinIcon,
 } from '@heroicons/react/24/outline';
-import { Github, Linkedin, Sparkles } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 import type { SiteConfig } from '@/lib/config';
 import { useMessages } from '@/lib/i18n/useMessages';
 
@@ -55,10 +55,7 @@ export default function Profile({ author, social, researchInterests }: ProfilePr
             className="sticky top-8"
         >
             <div className="mb-6">
-                <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-normal text-accent">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    build in pulic
-                </p>
+
                 <h1 className="mb-3 text-4xl font-serif font-bold leading-tight text-primary sm:text-5xl lg:text-4xl">
                     {author.name}
                 </h1>

@@ -6,7 +6,7 @@ more_href = "/blog"
 home_limit = 2
 
 [[items]]
-title = "Harness Engineering - 是什么、怎么设计、往哪走"
+title = "Harness Engineering"
 subtitle = "AI Agent Engineering"
 date = "2026-08-05"
 content = "从 Agent = Model + Harness 出发，梳理工具、状态、上下文、Hooks、长程执行与多 Agent 编排的设计方法，并讨论 Harness 的演进方向。"

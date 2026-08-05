@@ -1,7 +1,6 @@
 [site]
 title = "nanki"
 description = "Personal blog and open-source projects."
-favicon = "/favicon.svg"
 last_updated = "2026-06-14"
 
 [author]

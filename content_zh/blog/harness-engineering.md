@@ -1,11 +1,3 @@
-# Harness Engineering - 是什么、怎么设计、往哪走
-
-> 本文核心知识来自**addyosmani**的文章 [Harness Engineering](https://addyosmani.com/blog/agent-harness-engineering/)
->
->
-
-[**Addy Osmani**](https://addyosmani.com/)是Google Cloud AI 总监。他是从**前端性能优化领域的大神**，转型到 **AI Agent 工程化**方向的技术领军人物，在前端圈和 AI 编程圈都有很高的影响力。
-
 ## 前言
 
 LangChain 的 Viv 有句话：
@@ -434,10 +426,13 @@ Khan 的观点与 Viv 的核心思想一致，只是通过一个真实产品进�
 
 总结开头的问题harness**是什么、怎么设计、往哪走；**
 
-从最简单的来看，**Agent = Model + Harness。**harness就是除了模型之外的所有东西，包括工具，约束，提示词等，有了这些模型之外的东西，才组成了能帮我们稳定完成任务的agent；
+从最简单的来看，*Agent = Model + Harness* harness就是除了模型之外的所有东西，包括工具，约束，提示词等，有了这些模型之外的东西，才组成了能帮我们稳定完成任务的agent；
 
-而我们需要设计harness的目的正是出于，**模型的输出本质是概率性事件**，**harness是我们对模型不确定性，不信任部分的具像化**，所以我们也应该从这些不信任的行为反推harness的设计；
+而我们需要设计harness的目的正是出于，**模型的输出本质是概率性事件**，**harness是我们对模型不确定性，不能100%相信部分的体现**，所以我们也应该从这些不信任的行为反推harness的设计；
 
 对于harness往哪走，随着模型的发展，有一部分harness的能力会被模型吸收，但是在这过程中，又会有新的问题需要harness解决；
 
-> （注：部分内容可能由 AI 生成）
+
+> 本文核心观点来自**addyosmani**的文章 [Harness Engineering](https://addyosmani.com/blog/agent-harness-engineering/)
+>
+> [**Addy Osmani**](https://addyosmani.com/)是Google Cloud AI 总监。他是从**前端性能优化领域的大神**，转型到 **AI Agent 工程化**方向的技术领军人物，在前端圈和 AI 编程圈都有很高的影响力。

@@ -155,10 +155,6 @@ export default function BlogPost({ post, content }: BlogPostProps) {
           <header
             className={`${headings.length > 0 ? 'mb-6 xl:mb-10' : 'mb-10'} border-b border-neutral-200 pb-8 dark:border-neutral-800`}
           >
-            <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-neutral-500">
-              {post.subtitle && <span>{post.subtitle}</span>}
-              {post.date && <span>{post.date}</span>}
-            </div>
             <h1 className="text-balance font-serif text-4xl font-bold leading-tight text-primary sm:text-5xl">
               {post.title}
             </h1>

@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
-import { CardPageConfig } from '@/types/page';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { CardItem, CardPageConfig } from '@/types/page';
+import { ArrowRight } from 'lucide-react';
 
 const markdownComponents = {
     p: ({ children }: React.ComponentProps<'p'>) => <p className="mb-3 last:mb-0">{children}</p>,
@@ -16,7 +16,7 @@ const markdownComponents = {
             {...props}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
+            className="relative z-10 text-accent font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
         />
     ),
     blockquote: ({ children }: React.ComponentProps<'blockquote'>) => (
@@ -30,6 +30,29 @@ const markdownComponents = {
         <code className="px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-[0.95em]">{children}</code>
     ),
 };
+
+function CardTitle({ title, link }: Pick<CardItem, 'title' | 'link'>) {
+    if (!link) {
+        return <>{title}</>;
+    }
+
+    const className = "focus-visible:outline-none after:absolute after:inset-0 after:z-0 after:content-['']";
+
+    return link.startsWith('/') ? (
+        <Link href={link} className={className}>
+            {title}
+        </Link>
+    ) : (
+        <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={className}
+        >
+            {title}
+        </a>
+    );
+}
 
 export default function CardPage({ config, embedded = false }: { config: CardPageConfig; embedded?: boolean }) {
     const items = embedded && config.home_limit ? config.items.slice(0, config.home_limit) : config.items;
@@ -70,11 +93,13 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.1 * index }}
-                        className={`group bg-background ${embedded ? "p-4" : "p-6"} rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-lg`}
+                        className={`group relative bg-background ${embedded ? "p-4" : "p-6"} rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-lg ${item.link ? "cursor-pointer focus-within:ring-2 focus-within:ring-accent/50" : ""}`}
                     >
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                             <div className="min-w-0">
-                                <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
+                                <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary ${item.link ? "transition-colors duration-200 group-hover:text-accent" : ""}`}>
+                                    <CardTitle title={item.title} link={item.link} />
+                                </h3>
                                 {showDetails && item.subtitle && (
                                     <p className={`${embedded ? "text-sm" : "text-base"} text-accent font-medium mt-1`}>{item.subtitle}</p>
                                 )}
@@ -101,28 +126,6 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                         {item.date}
                                     </span>
                                 )}
-                                {item.link && (() => {
-                                    const isInternal = item.link.startsWith('/');
-                                    const linkLabel = isInternal ? 'Read More' : 'View Link';
-                                    const className = "inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors duration-200 hover:text-accent";
-
-                                    return isInternal ? (
-                                        <Link href={item.link} className={className}>
-                                            {linkLabel}
-                                            <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                                        </Link>
-                                    ) : (
-                                        <a
-                                            href={item.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={className}
-                                        >
-                                            {linkLabel}
-                                            <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                                        </a>
-                                    );
-                                })()}
                             </div>
                         </div>
                     </motion.div>
