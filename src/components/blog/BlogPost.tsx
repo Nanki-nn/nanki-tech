@@ -60,6 +60,14 @@ function createMarkdownComponents(headings: MarkdownHeading[]): Components {
     strong: ({ children }: React.ComponentProps<'strong'>) => (
       <strong className="font-semibold text-primary">{children}</strong>
     ),
+    a: ({ children, href }: React.ComponentProps<'a'>) => (
+      <a
+        href={href}
+        className="font-medium text-accent underline decoration-2 underline-offset-4 transition-colors hover:text-primary [&_code]:text-inherit [&_strong]:text-inherit"
+      >
+        {children}
+      </a>
+    ),
     pre: ({ children }) => {
       const child = Children.only(children);
 
@@ -164,23 +172,6 @@ export default function BlogPost({ post, content }: BlogPostProps) {
             <h1 className="text-balance font-serif text-4xl font-bold leading-tight text-primary sm:text-5xl">
               {post.title}
             </h1>
-            {post.content && (
-              <p className="mt-5 text-lg leading-8 text-neutral-600 dark:text-neutral-500">
-                {post.content}
-              </p>
-            )}
-            {post.tags && (
-              <div className="mt-6 flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded border border-neutral-200 bg-neutral-50 px-2 py-1 text-xs text-neutral-500 dark:border-neutral-800 dark:bg-neutral-800/50"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
           </header>
 
           {headings.length > 0 && (
