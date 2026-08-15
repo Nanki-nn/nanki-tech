@@ -38,10 +38,10 @@ export default function BlogTimeline({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <header className="mb-10 border-b border-neutral-200 pb-8 dark:border-neutral-800">
-        <h1 className="font-serif text-4xl font-bold text-primary">{config.title}</h1>
+      <header className="mb-12 pb-2">
+        <h1 className="font-serif text-4xl font-semibold text-primary sm:text-5xl">{config.title}</h1>
         {config.description && (
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-500">
+          <p className="mt-4 max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-500">
             {config.description}
           </p>
         )}
@@ -49,15 +49,17 @@ export default function BlogTimeline({
 
       <CollectionShelf collections={collections} locale={locale} />
 
-      <div className="space-y-10">
+      <div className="space-y-12">
         {groups.map(([year, posts]) => (
-          <section key={year} className="grid gap-4 sm:grid-cols-[5rem_1fr]">
-            <div className="font-serif text-2xl font-bold text-accent">{year}</div>
-            <div className="relative space-y-5 border-l border-neutral-200 pl-6 dark:border-neutral-800">
+          <section key={year}>
+            <h2 className="mb-3 font-serif text-xl font-semibold text-primary">{year}</h2>
+            <div>
               {posts.map((post) => (
-                <article key={post.slug || post.title} className="group relative pb-5 last:pb-0">
-                  <span className="absolute -left-[1.68rem] top-2 h-3 w-3 rounded-full border-2 border-background bg-accent" />
-                  <BlogListItemContent post={post} linkTitle />
+                <article
+                  key={post.slug || post.title}
+                  className="group py-5"
+                >
+                  <BlogListItemContent post={post} linkTitle locale={locale} />
                 </article>
               ))}
             </div>

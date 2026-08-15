@@ -1,7 +1,9 @@
 import { Children, isValidElement } from 'react';
 import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 import MermaidDiagram from '@/components/blog/MermaidDiagram';
+import BlogImage from '@/components/blog/BlogImage';
 import TableOfContents from '@/components/blog/TableOfContents';
 import { extractMarkdownHeadings, type MarkdownHeading } from '@/lib/markdownHeadings';
 import type { CardItem } from '@/types/page';
@@ -102,13 +104,7 @@ function createMarkdownComponents(headings: MarkdownHeading[]): Components {
       );
     },
     img: ({ src = '', alt = '' }: React.ComponentProps<'img'>) => (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        className="my-8 block h-auto w-full rounded-xl border border-neutral-200 bg-white object-contain shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
-      />
+      <BlogImage src={typeof src === 'string' ? src : ''} alt={alt} />
     ),
     blockquote: ({ children }: React.ComponentProps<'blockquote'>) => (
       <blockquote className="my-4 border-l-2 border-accent pl-5 font-serif text-lg italic leading-7 text-neutral-700 [&>p]:mb-0 dark:text-neutral-400">
@@ -147,6 +143,13 @@ interface BlogPostProps {
 export default function BlogPost({ post, content }: BlogPostProps) {
   const headings = extractMarkdownHeadings(content);
   const markdownComponents = createMarkdownComponents(headings);
+  const formattedDate = post.date
+    ? new Intl.DateTimeFormat('zh-CN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }).format(new Date(`${post.date}T00:00:00`))
+    : null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -158,6 +161,14 @@ export default function BlogPost({ post, content }: BlogPostProps) {
             <h1 className="text-balance font-serif text-4xl font-bold leading-tight text-primary sm:text-5xl">
               {post.title}
             </h1>
+            {formattedDate && (
+              <time
+                dateTime={post.date}
+                className="mt-4 block text-sm tabular-nums text-neutral-400"
+              >
+                {formattedDate}
+              </time>
+            )}
           </header>
 
           {headings.length > 0 && (
@@ -167,7 +178,11 @@ export default function BlogPost({ post, content }: BlogPostProps) {
           )}
 
           <div className="text-base">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[[rehypeHighlight, { detect: true, ignoreMissing: true }]]}
+              components={markdownComponents}
+            >
               {content}
             </ReactMarkdown>
           </div>

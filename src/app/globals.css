@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "highlight.js/styles/github-dark-dimmed.css";
 
 /* Explicitly set dark mode to use class strategy */
 @variant dark (&:where(.dark, .dark *));
