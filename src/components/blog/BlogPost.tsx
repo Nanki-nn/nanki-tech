@@ -83,10 +83,10 @@ function createMarkdownComponents(headings: MarkdownHeading[]): Components {
     },
     code: ({ children, className }) => {
       const isBlock = Boolean(className);
-      const language = className?.replace('language-', '');
+      const isMermaid = className?.split(/\s+/).includes('language-mermaid');
 
       if (isBlock) {
-        if (language === 'mermaid') {
+        if (isMermaid) {
           return <MermaidDiagram chart={String(children).trim()} />;
         }
 
