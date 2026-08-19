@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
 import BlogListItemContent from '@/components/blog/BlogListItemContent';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 import type { CardItem } from '@/types/page';
@@ -51,25 +50,14 @@ export default function CollectionPageClient({
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8"
+      className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8"
     >
-      <Link
-        href="/blog"
-        className="mb-12 inline-flex items-center gap-2 text-sm text-neutral-500 transition-colors hover:text-accent"
-      >
-        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-        {isChinese ? '返回 Blog' : 'Back to Blog'}
-      </Link>
-
       <header className="mb-12">
         <h1 className="text-balance font-serif text-4xl font-semibold leading-tight text-primary sm:text-5xl">
           {collection.title}
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-500">
           {collection.description}
-        </p>
-        <p className="mt-3 text-xs text-neutral-400">
-          {collection.posts.length} {isChinese ? '篇文章' : collection.posts.length === 1 ? 'article' : 'articles'}
         </p>
       </header>
 
