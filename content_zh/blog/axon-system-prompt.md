@@ -1,5 +1,3 @@
-# 03. 让 Agent 更聪明：System Prompt 的分层设计
-
 > 从零到一实现一个 AI Agent 框架 · 第三篇
 
 ---

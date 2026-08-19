@@ -153,12 +153,12 @@ export default function BlogPost({ post, content }: BlogPostProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8 xl:grid xl:max-w-[82rem] xl:grid-cols-[minmax(0,48rem)_13rem] xl:justify-center xl:gap-16 2xl:gap-20">
+      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8 xl:grid xl:max-w-[90rem] xl:grid-cols-[minmax(0,54rem)_14rem] xl:justify-center xl:gap-14 2xl:gap-16">
         <article className="min-w-0">
           <header
             className={`${headings.length > 0 ? 'mb-6 xl:mb-10' : 'mb-10'} border-b border-neutral-200 pb-8 dark:border-neutral-800`}
           >
-            <h1 className="text-balance font-serif text-4xl font-bold leading-tight text-primary sm:text-5xl">
+            <h1 className="font-serif text-4xl font-bold leading-tight text-primary sm:text-5xl">
               {post.title}
             </h1>
             {formattedDate && (

@@ -1,5 +1,3 @@
-# 00. 系列概览：从零搭一个 AI Agent 框架
-
 > 这是一个教学系列，基于 [Axon](https://github.com/nanki/axon) 项目，带你从零理解 AI Agent 框架的核心设计。
 
 ---

@@ -19,7 +19,7 @@ export default function CollectionShelf({
         id="featured-collections"
         className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500"
       >
-        {isChinese ? '精选合集' : 'Collections'}
+        {isChinese ? '合集' : 'Collections'}
       </h2>
 
       <div>
