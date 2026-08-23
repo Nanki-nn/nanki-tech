@@ -78,7 +78,7 @@ App → Harness
 
 ### 2.3 Middleware：把横切能力从 Agent 主流程中抽离
 
-**DeerFlow 没有把输入清洗、上下文注入、预算、安全、审计、摘要和异常处理写进 Agent 主循环，而是把它们拆成独立的 AgentMiddleware，再按稳定顺序装配到运行时。**严格来说，这不是 AspectJ 式的编译期织入，而是通过 Hook 链实现的 AOP 风格关注点分离。
+**DeerFlow 没有把输入清洗、上下文注入、预算、安全、审计、摘要和异常处理写进 Agent 主循环，而是把它们拆成独立的 AgentMiddleware，再按稳定顺序装配到运行时。** 严格来说，这不是 AspectJ 式的编译期织入，而是通过 Hook 链实现的 AOP 风格关注点分离。
 
 #### 2.3.1 为什么 Agent 主循环需要 Middleware
 
@@ -109,21 +109,13 @@ Agent 的核心循环本来很简单：调用模型、解析工具请求、执�
 
 #### 2.3.3 AOP 风格设计带来的收益
 
-**主循环稳定**
+- **主循环稳定**：Model/Tool Loop 不因新增预算、审计或安全策略而持续膨胀。
 
-Model/Tool Loop 不因新增预算、审计或安全策略而持续膨胀。
+- **能力可复用**：共享运行时 Middleware 可以同时服务 Lead Agent、Subagent 和 DeerFlowClient。
 
-**能力可复用**
+- **配置可裁剪**：计划、视觉、摘要、Guardrail 和预算等能力按运行配置动态启停。
 
-共享运行时 Middleware 可以同时服务 Lead Agent、Subagent 和 DeerFlowClient。
-
-**配置可裁剪**
-
-计划、视觉、摘要、Guardrail 和预算等能力按运行配置动态启停。
-
-**测试更聚焦**
-
-每个横切关注点可以独立测试，链顺序则由集成测试和架构文档共同约束。
+- **测试更聚焦**：每个横切关注点可以独立测试，链顺序则由集成测试和架构文档共同约束。
 
 ### 2.4 沙箱
 
