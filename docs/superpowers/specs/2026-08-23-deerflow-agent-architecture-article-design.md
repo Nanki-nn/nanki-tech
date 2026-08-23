@@ -6,6 +6,7 @@ Publish the supplied Chinese article, “从 DeerFlow 探究 Agent 工程的架�
 
 ## Content and metadata
 
+- Import the supplied source file from `/Users/bytedance/Downloads/从 DeerFlow 探究 Agent 工程的架构与设计.md` in full. The source contains no image references or other article assets, so no public-asset migration or Markdown URL rewriting is required.
 - Store one canonical Markdown file at `content/blog/deerflow-agent-architecture.md`.
 - Register the post in both `content/blog.toml` and `content_zh/blog.toml` so it remains visible in either configured locale, matching the site’s current handling of Chinese technical articles.
 - Use slug `deerflow-agent-architecture` and route `/blog/deerflow-agent-architecture`.
@@ -18,7 +19,7 @@ Light proofreading may correct punctuation, spacing, escaped Markdown characters
 
 ## Integration behavior
 
-The base content file is the only copy of the article. Locale-specific content loading may fall back to it, avoiding duplicate bodies that could drift. Both locale metadata lists point to the same `blog/deerflow-agent-architecture.md` source.
+The base content file is the only copy of the article. The existing loader already checks `content_<locale>/` first and then `content/`, so no loader code changes are needed. Both locale metadata lists point to the same `blog/deerflow-agent-architecture.md` source.
 
 ## Verification
 
