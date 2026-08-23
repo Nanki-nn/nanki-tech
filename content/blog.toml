@@ -6,6 +6,16 @@ more_href = "/blog"
 home_limit = 2
 
 [[items]]
+title = "从 DeerFlow 探究 Agent 工程的架构与设计"
+subtitle = "AI Agent Engineering"
+date = "2026-08-23"
+content = "从复杂性来源、架构分层与编排、设计原则与模式三条主线，拆解 DeerFlow 后端的 Agent 工程设计。"
+tags = ["DeerFlow", "AI Agent", "LangGraph", "Agent Architecture"]
+slug = "deerflow-agent-architecture"
+source = "blog/deerflow-agent-architecture.md"
+link = "/blog/deerflow-agent-architecture"
+
+[[items]]
 title = "工具的一切"
 subtitle = "AI Agent Engineering"
 date = "2026-08-15"
