@@ -30,7 +30,9 @@ export default function BlogTimeline({
   collections?: ResolvedBlogCollection[];
   locale: string;
 }) {
-  const groups = groupPosts(config.items);
+  const collectionPostSlugs = new Set(collections.flatMap((collection) => collection.postSlugs));
+  const standalonePosts = config.items.filter((post) => !post.slug || !collectionPostSlugs.has(post.slug));
+  const groups = groupPosts(standalonePosts);
 
   return (
     <motion.div
