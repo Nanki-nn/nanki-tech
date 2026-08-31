@@ -22,10 +22,10 @@ function CollectionPosts({ posts, locale }: { posts: CardItem[]; locale: string 
               href={post.link}
               className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
-              <BlogListItemContent post={post} locale={locale} />
+              <BlogListItemContent post={post} locale={locale} showDate={false} />
             </Link>
           ) : (
-            <BlogListItemContent post={post} locale={locale} />
+            <BlogListItemContent post={post} locale={locale} showDate={false} />
           )}
         </article>
       ))}
@@ -59,6 +59,14 @@ export default function CollectionPageClient({
         <p className="mt-4 max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-500">
           {collection.description}
         </p>
+        {collection.posts[0]?.date && (
+          <time
+            dateTime={collection.posts[0].date}
+            className="mt-3 block text-sm tabular-nums text-neutral-400"
+          >
+            {collection.posts[0].date}
+          </time>
+        )}
       </header>
 
       {collection.posts.length > 0 ? (

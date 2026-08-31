@@ -68,6 +68,19 @@ export default function BlogTimeline({
           </section>
         ))}
       </div>
+
+      <p className="mt-12 border-t border-neutral-200/70 pt-6 text-sm leading-6 text-neutral-500 dark:border-neutral-800">
+        {locale.startsWith('zh') ? '历史文章请见 ' : 'For historical articles, visit '}
+        <a
+          href="https://blog.csdn.net/Nanki_?type=blog"
+          target="_blank"
+          rel="noreferrer"
+          className="text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+        >
+          CSDN
+        </a>
+        {locale.startsWith('zh') ? '。' : '.'}
+      </p>
     </motion.div>
   );
 }

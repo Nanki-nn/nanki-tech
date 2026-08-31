@@ -16,10 +16,12 @@ export default function BlogListItemContent({
   post,
   linkTitle = false,
   locale = 'en',
+  showDate = true,
 }: {
   post: CardItem;
   linkTitle?: boolean;
   locale?: string;
+  showDate?: boolean;
 }) {
   const title = linkTitle && post.link ? (
     <Link
@@ -37,7 +39,7 @@ export default function BlogListItemContent({
         <h2 className="font-serif text-xl font-semibold leading-snug text-primary transition-colors group-hover:text-accent">
           {title}
         </h2>
-        {post.date && (
+        {showDate && post.date && (
           <time
             dateTime={post.date}
             className="shrink-0 pt-1 text-xs tabular-nums text-neutral-400"

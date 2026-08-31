@@ -57,6 +57,7 @@ function CardTitle({ title, link }: Pick<CardItem, 'title' | 'link'>) {
 export default function CardPage({ config, embedded = false }: { config: CardPageConfig; embedded?: boolean }) {
     const items = embedded && config.home_limit ? config.items.slice(0, config.home_limit) : config.items;
     const showDetails = config.title === 'Projects';
+    const showDates = config.title === 'Blogs';
 
     return (
         <motion.div
@@ -120,13 +121,11 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                     </div>
                                 )}
                             </div>
-                            <div className="flex shrink-0 flex-row items-center gap-3 sm:flex-col sm:items-end">
-                                {item.date && (
-                                    <span className="text-xs font-semibold text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
-                                        {item.date}
-                                    </span>
-                                )}
-                            </div>
+                            {showDates && item.date && (
+                                <time dateTime={item.date} className="shrink-0 text-xs tabular-nums text-neutral-400">
+                                    {item.date}
+                                </time>
+                            )}
                         </div>
                     </motion.div>
                 ))}
