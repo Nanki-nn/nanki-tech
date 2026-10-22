@@ -113,6 +113,19 @@ PRISM 现已支持多语言：
 
 在 `content/config.toml` 中配置多语言行为：
 
+### 6. 图片与静态资源（阿里云 OSS）
+
+图片、论文封面等二进制资源存放在阿里云 OSS，仓库里只保留相对 key：
+
+```markdown
+![图片](/blog-assets/tool-calling/1.png)
+```
+
+渲染时会拼成 `{NEXT_PUBLIC_OSS_BASE_URL}/{NEXT_PUBLIC_OSS_DIR_PREFIX}/blog-assets/tool-calling/1.png`。
+新增图片的流程是：放进 `public/` → 在 Markdown 里用 key 引用 → 执行 `npm run oss:sync` 上传。
+
+👉 **[完整说明见 docs/oss-assets_cn.md](docs/oss-assets_cn.md)**
+
 ## 📦 部署上线
 
 PRISM 针对静态部署进行了深度优化，你可以轻松将其托管在任何支持静态网站的平台上。
@@ -130,7 +143,7 @@ npm run build
 ```
 PRISM/
 ├── content/              # ✨ 用户内容区 (在此编辑 TOML, BibTeX, MD 文件)
-├── public/               # 静态资源 (图片, PDF论文等)
+├── public/               # 本地资源暂存区 (图片上传到 OSS 后可删除)
 ├── src/
 │   ├── app/              # Next.js App Router 核心逻辑
 │   ├── components/       # React 组件库

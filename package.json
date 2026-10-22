@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "oss:sync": "node scripts/oss-sync.mjs",
+    "oss:verify": "node scripts/oss-sync.mjs --verify --force"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",

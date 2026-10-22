@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { X, ZoomIn } from 'lucide-react';
+import { assetUrl } from '@/lib/assets';
 
 export default function BlogImage({ src, alt }: { src: string; alt: string }) {
   const [isOpen, setIsOpen] = useState(false);
+  const resolvedSrc = assetUrl(src);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -34,7 +36,7 @@ export default function BlogImage({ src, alt }: { src: string; alt: string }) {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={src}
+          src={resolvedSrc}
           alt={alt}
           loading="lazy"
           className="block h-auto w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
@@ -63,7 +65,7 @@ export default function BlogImage({ src, alt }: { src: string; alt: string }) {
 
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={src}
+            src={resolvedSrc}
             alt={alt}
             className="max-h-[90vh] max-w-[94vw] object-contain"
             onClick={(event) => event.stopPropagation()}
